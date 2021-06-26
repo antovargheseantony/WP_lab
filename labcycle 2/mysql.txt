@@ -1,0 +1,354 @@
+MariaDB [(none)]> show databases;
+
++ 	+
+
+| Database	|
+
++ 	+
+
+| information_schema |
+
+| mysql	|
+
+| performance_schema |
+
+| phpmyadmin	|
+
+| test	|
+
++ 	+
+
+5 rows in set (0.001 sec)
+
+
+
+MariaDB [(none)]> create database Company; Query OK, 1 row affected (0.001 sec)
+
+
+MariaDB [(none)]> use Company;
+ 
+Database changed
+
+MariaDB [Company]> create table Department(Deptid Integer Primary Key,Deptname v archar(20) not null unique);
+Query OK, 0 rows affected (0.051 sec)
+
+
+
+MariaDB [Company]> show tables;
+
++ 	+
+
+| Tables_in_company |
+
++ 	+
+
+| department	|
+
++ 	+
+
+1	row in set (0.012 sec)
+
+
+
+MariaDB [Company]> create table Employees(Empid integer Primary Key,Ename varcha r(20) not null,Deptid integer,foreign key(Deptid) references Department(Deptid)
+on delete cascade on update cascade); Query OK, 0 rows affected (0.071 sec)
+
+
+MariaDB [Company]> show tables
+
+-> \c
+
+MariaDB [Company]> show tables;
+
++ 	+
+
+| Tables_in_company |
+
++ 	+
+
+| department	|
+
+| employees	|
+
++ 	+
+
+2	rows in set (0.001 sec)
+ 
+MariaDB [Company]> desc department;
+
++ 	+ 	+ 	+ 	+ 	+ 	+
+
+| Field | Type	| Null | Key | Default | Extra |
+
++ 	+ 	+ 	+ 	+ 	+ 	+
+
+| Deptid | int(11)	| NO | PRI | NULL  |	|
+
+| Deptname | varchar(20) | NO | UNI | NULL |	|
+
++ 	+ 	+ 	+ 	+ 	+ 	+ 2 rows in set (0.004 sec)
+
+
+MariaDB [Company]> desc employees
+
+-> \c
+
+MariaDB [Company]> desc employees;
+
++ 	+ 	+ 	+ 	+ 	+ 	+
+
+| Field | Type	| Null | Key | Default | Extra |
+
++ 	+ 	+ 	+ 	+ 	+ 	+
+
+| Empid | int(11)	| NO | PRI | NULL  |	|
+
+| Ename | varchar(20) | NO |	| NULL  |	|
+
+| Deptid | int(11)	| YES | MUL | NULL  |	|
+
++ 	+ 	+ 	+ 	+ 	+ 	+ 3 rows in set (0.004 sec)
+
+
+MariaDB [Company]> alter table Employees add emailid varchar(40),add salary inte ger,add remarks varchar(45);
+Query OK, 0 rows affected (0.058 sec) Records: 0 Duplicates: 0 Warnings: 0
+
+
+MariaDB [Company]> desc employees
+
+-> \c
+
+MariaDB [Company]> desc employees;
+ 
++ 	+ 	+ 	+ 	+ 	+ 	+
+
+| Field | Type	| Null | Key | Default | Extra |
+
++ 	+ 	+ 	+ 	+ 	+ 	+
+
+| Empid | int(11)	| NO | PRI | NULL  |	|
+
+| Ename | varchar(20) | NO |	| NULL  |	|
+
+| Deptid | int(11)	| YES | MUL | NULL  |	|
+
+| emailid | varchar(40) | YES |	| NULL  |	|
+
+| salary | int(11)	| YES |	| NULL  |	|
+
+| remarks | varchar(45) | YES |	| NULL  |	|
+
++ 	+ 	+ 	+ 	+ 	+ 	+ 6 rows in set (0.003 sec)
+
+
+MariaDB [Company]> alter table employees add unique(emailid); Query OK, 0 rows affected (0.074 sec)
+Records: 0 Duplicates: 0 Warnings: 0
+
+
+
+MariaDB [Company]> alter table employees add check (salary>=5000); Query OK, 0 rows affected (0.226 sec)
+Records: 0 Duplicates: 0 Warnings: 0
+
+
+
+MariaDB [Company]> alter table employees drop remarks; Query OK, 0 rows affected (0.041 sec)
+Records: 0 Duplicates: 0 Warnings: 0
+
+
+
+MariaDB [Company]> desc employees;
+
++ 	+ 	+ 	+ 	+ 	+ 	+
+
+| Field | Type	| Null | Key | Default | Extra |
+
++ 	+ 	+ 	+ 	+ 	+ 	+
+
+| Empid | int(11)	| NO | PRI | NULL  |	|
+ 
+| Ename | varchar(20) | NO |	| NULL  |	|
+
+| Deptid | int(11)	| YES | MUL | NULL  |	|
+
+| emailid | varchar(40) | YES | UNI | NULL |	|
+
+| salary | int(11)	| YES |	| NULL  |	|
+
++ 	+ 	+ 	+ 	+ 	+ 	+ 5 rows in set (0.003 sec)
+
+
+MariaDB [Company]> desc department;
+
++ 	+ 	+ 	+ 	+ 	+ 	+
+
+| Field | Type	| Null | Key | Default | Extra |
+
++ 	+ 	+ 	+ 	+ 	+ 	+
+
+| Deptid | int(11)	| NO | PRI | NULL  |	|
+
+| Deptname | varchar(20) | NO | UNI | NULL |	|
+
++ 	+ 	+ 	+ 	+ 	+ 	+ 2 rows in set (0.003 sec)
+
+
+MariaDB [Company]> insert into Department values(101,'Purchasing'),(201,'Product ion'),(301,'Marketing'),(401,'HR'),(501,'Sales');
+Query OK, 5 rows affected (0.053 sec) Records: 5 Duplicates: 0 Warnings: 0
+
+
+MariaDB [Company]> insert into employees values(1001,'raj',401,'raj@gmail.com',1 0000),(2001,'Angel',301,'angel@gmail.com',9000),(3001,'Aashu',201,'aashu@gmail.c om',11000),(4001,'riju',101,'riju@gmail.com',13000),(5001,'rincy',501,'rincy@gma il.com',14000);
+Query OK, 5 rows affected (0.076 sec) Records: 5 Duplicates: 0 Warnings: 0
+
+
+MariaDB [Company]> select * from employees
+ 
+-> \c
+
+MariaDB [Company]> select * from employees;
+
++ 	+ 	+ 	+ 	+ 	+
+
+| Empid | Ename | Deptid | emailid	| salary |
+
++ 	+ 	+ 	+ 	+ 	+
+
+| 1001 | raj | 401 | raj@gmail.com | 10000 |
+
+| 2001 | Angel | 301 | angel@gmail.com | 9000 |
+
+| 3001 | Aashu | 201 | aashu@gmail.com | 11000 |
+
+| 4001 | riju | 101 | riju@gmail.com | 13000 |
+
+| 5001 | rincy | 501 | rincy@gmail.com | 14000 |
+
++ 	+ 	+ 	+ 	+ 	+ 5 rows in set (0.013 sec)
+
+
+MariaDB [Company]> select * from department;
+
++ 	+ 	+
+
+| Deptid | Deptname  |
+
++ 	+ 	+
+
+|  401 | HR	|
+
+| 301 | Marketing |
+
+| 201 | Production |
+
+| 101 | Purchasing |
+
+| 501 | Sales	|
+
++ 	+ 	+
+
+5 rows in set (0.000 sec)
+
+
+
+MariaDB [Company]> select Ename from employees where Deptid=501;
+
++ 	+
+
+| Ename |
+
++ 	+
+ 
+| rincy |
+
++ 	+
+
+1 row in set (0.042 sec)
+
+
+
+MariaDB [Company]> select empname,salary from employees; ERROR 1054 (42S22): Unknown column 'empname' in 'field list' MariaDB [Company]> select ename,salary from employees;
++ 	+ 	+
+
+| ename | salary |
+
++ 	+ 	+
+
+| raj | 10000 |
+
+| Angel | 9000 |
+
+| Aashu | 11000 |
+
+| riju | 13000 |
+
+| rincy | 14000 |
+
++ 	+ 	+
+
+5 rows in set (0.001 sec)
+
+
+
+MariaDB [Company]> update employees set salary=50000 where empId=2001; Query OK, 1 row affected (0.022 sec)
+Rows matched: 1 Changed: 1 Warnings: 0
+
+
+
+MariaDB [Company]> delete from employees where empid=3001; Query OK, 1 row affected (0.012 sec)
+
+
+MariaDB [Company]> select Ename from Employees where salary=13000;
+
++ 	+
+
+| Ename |
+
++ 	+
+ 
+| riju |
+
++ 	+
+
+1 row in set (0.001 sec)
+
+
+
+MariaDB [Company]> delete from department where Deptid=201; Query OK, 1 row affected (0.023 sec)
+
+
+MariaDB [Company]> select * from Employees;
+
++ 	+ 	+ 	+ 	+ 	+
+
+| Empid | Ename | Deptid | emailid	| salary |
+
++ 	+ 	+ 	+ 	+ 	+
+
+| 1001 | raj | 401 | raj@gmail.com | 10000 |
+
+| 2001 | Angel | 301 | angel@gmail.com | 50000 |
+
+| 4001 | riju | 101 | riju@gmail.com | 13000 |
+
+| 5001 | rincy | 501 | rincy@gmail.com | 14000 |
+
++ 	+ 	+ 	+ 	+ 	+ 4 rows in set (0.001 sec)
+
+
+MariaDB [Company]> select * from Employees order by salary asc;
+
++ 	+ 	+ 	+ 	+ 	+
+
+| Empid | Ename | Deptid | emailid	| salary |
+
++ 	+ 	+ 	+ 	+ 	+
+
+| 1001 | raj | 401 | raj@gmail.com | 10000 |
+
+| 4001 | riju | 101 | riju@gmail.com | 13000 |
+
+| 5001 | rincy | 501 | rincy@gmail.com | 14000 |
+
+| 2001 | Angel | 301 | angel@gmail.com | 50000 |
+
++ 	+ 	+ 	+ 	+ 	+ 4 rows in set (0.001 sec)
+ 

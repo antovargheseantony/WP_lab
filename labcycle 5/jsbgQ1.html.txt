@@ -1,0 +1,18 @@
+
+<html> 
+<head> 
+<title>bgchanger</title> 
+</head> 
+<body> 
+<button id="myBtn">Click</button> 
+<script> 
+ 
+document.getElementById("myBtn").addEventListener("click",function(){ document.body.style.backgroundColor="red";}); 
+ 
+document.getElementById("myBtn").addEventListener("dblclick",function(){ document.body.style.backgroundColor="green"; 
+}); 
+ 
+</script> 
+</body> 
+</html> 
+

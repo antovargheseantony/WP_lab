@@ -1,0 +1,33 @@
+h1{
+
+color: cyan;
+
+text-align: center; background-color: Green;
+}
+
+p{
+
+color:red; background-color:Tan;
+
+} #p1{
+color:blue;
+
+background-color: Pink;
+
+}
+
+*{
+
+font-family: Verdana; background-color:white;
+ 
+}
+
+.p2{
+
+color: black; background-color:cyan;
+}
+
+u,b{ color:orange;
+background-color:black;
+
+}
